@@ -1,32 +1,34 @@
-Ejemplo base 
+//Ejemplo base
 
 package main //instancio el main
 
-import(
-	"net/http"
+import (
+	"fmt"
 	"ioutil"
+	"net/http"
 )
+
 type Categories []Category
 
-type Category struct{
-	ID   string	 `json "id"`
-	Name string  `json:"name"`
+type Category struct {
+	ID   string `json "id"`
+	Name string `json:"name"`
 }
 
-func main(){
+func main() {
 
-	cats, err :=GetCategories("MLA")
-	if err != nil{
+	cats, err := GetCategories("MLA")
+	if err != nil {
 		//validar
 	}
 	fmt.Println("Las categorias son ......")
 }
 
-func GetCategories( siteID string )(Categories, error){	//Dividos la categorias del json
+func GetCategories(siteID string) (Categories, error) { //Dividos la categorias del json
 
 	reponse := http.Get // Hay q completar
 
-	bytes:= ioutil.ReadAll(reponse.bytes) //vompletar
+	bytes := ioutil.ReadAll(reponse.bytes) //vompletar
 
 	var categories Categories
 	err := json.Unmarshall(bytes, &cats)
